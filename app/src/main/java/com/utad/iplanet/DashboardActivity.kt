@@ -2,15 +2,16 @@ package com.utad.iplanet
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.utad.iplanet.databinding.ActivityMainBinding
+import com.utad.iplanet.databinding.ActivityDashboardBinding
 
-class MainActivity : AppCompatActivity() {
-    private lateinit var binding: ActivityMainBinding
+class DashboardActivity : AppCompatActivity() {
+    private lateinit var binding: ActivityDashboardBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityMainBinding.inflate(layoutInflater)
+        binding = ActivityDashboardBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
-    }
 
+    }
 }
