@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/dashboardActivity">
+
+    <activity
+        android:id="@+id/dashboardActivity"
+        android:name="com.utad.iplanet.DashboardActivity"
+        android:label="activity_dashboard"
+        tools:layout="@layout/activity_dashboard" />
+    <fragment
+        android:id="@+id/addNewPlanetFragment"
+        android:name="com.utad.iplanet.views.AddPlanet.AddNewPlanetFragment"
+        android:label="fragment_add_new_planet"
+        tools:layout="@layout/fragment_add_new_planet" >
+        <action
+            android:id="@+id/action_addNewPlanetFragment_to_planetsListFragment"
+            app:destination="@id/planetsListFragment" />
+        <action
+            android:id="@+id/action_addNewPlanetFragment_to_addNewPhotoFragment"
+            app:destination="@id/addNewPhotoFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/editPlanetFragment"
+        android:name="com.utad.iplanet.views.EditPlanet.EditPlanetFragment"
+        android:label="fragment_edit_planet"
+        tools:layout="@layout/fragment_edit_planet" >
+        <action
+            android:id="@+id/action_editPlanetFragment_to_planetDetailFragment"
+            app:destination="@id/planetDetailFragment" />
+        <action
+            android:id="@+id/action_editPlanetFragment_to_planetsListFragment"
+            app:destination="@id/planetsListFragment" />
+        <action
+            android:id="@+id/action_editPlanetFragment_to_editPhotoPlanetFragment"
+            app:destination="@id/editPhotoPlanetFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/planetDetailFragment"
+        android:name="com.utad.iplanet.views.DetailPlanet.PlanetDetailFragment"
+        android:label="fragment_planet_detail"
+        tools:layout="@layout/fragment_planet_detail" >
+        <action
+            android:id="@+id/action_planetDetailFragment_to_planetsListFragment"
+            app:destination="@id/planetsListFragment" />
+        <action
+            android:id="@+id/action_planetDetailFragment_to_editPlanetFragment"
+            app:destination="@id/editPlanetFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/planetsListFragment"
+        android:name="com.utad.iplanet.views.ListPlanet.PlanetsListFragment"
+        android:label="fragment_planets_list"
+        tools:layout="@layout/fragment_planets_list" >
+        <action
+            android:id="@+id/action_planetsListFragment_to_addNewPlanetFragment"
+            app:destination="@id/addNewPlanetFragment" />
+        <action
+            android:id="@+id/action_planetsListFragment_to_planetDetailFragment"
+            app:destination="@id/planetDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/addNewPhotoFragment"
+        android:name="com.utad.iplanet.views.AddPlanet.addNewPhotoPlanet.AddNewPhotoFragment"
+        android:label="fragment_add_new_photo"
+        tools:layout="@layout/fragment_add_new_photo" >
+        <action
+            android:id="@+id/action_addNewPhotoFragment_to_addNewPlanetFragment"
+            app:destination="@id/addNewPlanetFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/editPhotoPlanetFragment"
+        android:name="com.utad.iplanet.views.EditPlanet.addPhotoPlanet.editPhotoPlanetFragment"
+        android:label="fragment_edit_photo_planet"
+        tools:layout="@layout/fragment_edit_photo_planet" >
+        <action
+            android:id="@+id/action_editPhotoPlanetFragment_to_editPlanetFragment"
+            app:destination="@id/editPlanetFragment" />
+    </fragment>
+</navigation>
