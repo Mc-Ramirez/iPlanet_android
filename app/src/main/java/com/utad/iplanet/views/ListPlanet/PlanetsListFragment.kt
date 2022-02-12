@@ -66,7 +66,7 @@ class PlanetsListFragment : Fragment() {
 
         val planets = mutableListOf<PlanetItem>()
         for (index in 1 .. 10){
-            PlanetItem(index.toString(), "name:${index}",index,index, index, index, index, "category:${index}","planetUrlImage:${index}")
+            PlanetItem(index.toString(), "name:${index}",index,index, index, "planetMassKg:${index}", index, "category:${index}","planetUrlImage:${index}")
         }
         adapter.submitList(planets)
     }

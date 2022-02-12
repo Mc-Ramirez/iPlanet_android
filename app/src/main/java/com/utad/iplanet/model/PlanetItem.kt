@@ -9,7 +9,7 @@ data class PlanetItem(
     @SerializedName("planetDistanceMio") val planetDistanceMio : Int,
     @SerializedName("planetEquatorialRadius") val planetEquatorialRadius : Int,
     @SerializedName("planetRotationPeriod") val planetRotationPeriod : Int,
-    @SerializedName("planetMassKg") val planetMassKg : Int,
+    @SerializedName("planetMassKg") val planetMassKg : String,
     @SerializedName("planetDensity") val planetDensity : Int,
     @SerializedName("category") val category : String,
     @SerializedName("planetUrlImage") val planetUrlImage : String
