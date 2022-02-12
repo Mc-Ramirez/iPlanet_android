@@ -3,8 +3,9 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Alberto/Desktop/Proyectos/iPlanet/app/src/main/res/drawable/ic_launcher_background.xml" value="0.2555" />
         <entry key="..\:/Users/Alberto/Desktop/Proyectos/iPlanet/app/src/main/res/layout/Dashboard.xml" value="0.12708333333333333" />
-        <entry key="..\:/Users/Alberto/Desktop/Proyectos/iPlanet/app/src/main/res/layout/activity_dashboard.xml" value="0.1793478260869565" />
+        <entry key="..\:/Users/Alberto/Desktop/Proyectos/iPlanet/app/src/main/res/layout/activity_dashboard.xml" value="0.536" />
         <entry key="..\:/Users/Alberto/Desktop/Proyectos/iPlanet/app/src/main/res/layout/fragment_add_new_planet.xml" value="0.12708333333333333" />
         <entry key="..\:/Users/Alberto/Desktop/Proyectos/iPlanet/app/src/main/res/layout/fragment_planet_detail.xml" value="0.25" />
         <entry key="..\:/Users/Alberto/Desktop/Proyectos/iPlanet/app/src/main/res/layout/fragment_planets_list.xml" value="0.11302083333333333" />
@@ -16,5 +17,12 @@
   </component>
   <component name="ProjectType">
     <option name="id" value="Android" />
+  </component>
+  <component name="VisualizationToolProject">
+    <option name="state">
+      <ProjectState>
+        <option name="scale" value="0.2" />
+      </ProjectState>
+    </option>
   </component>
 </project>
