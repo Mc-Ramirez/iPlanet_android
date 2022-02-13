@@ -3,13 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/dashboardActivity">
+    app:startDestination="@id/planetsListFragment">
 
-    <activity
-        android:id="@+id/dashboardActivity"
-        android:name="com.utad.iplanet.DashboardActivity"
-        android:label="activity_dashboard"
-        tools:layout="@layout/activity_dashboard" />
     <fragment
         android:id="@+id/addNewPlanetFragment"
         android:name="com.utad.iplanet.views.AddPlanet.AddNewPlanetFragment"
@@ -48,6 +43,7 @@
         <action
             android:id="@+id/action_planetDetailFragment_to_editPlanetFragment"
             app:destination="@id/editPlanetFragment" />
+        <argument android:name="itemToShow" />
     </fragment>
     <fragment
         android:id="@+id/planetsListFragment"

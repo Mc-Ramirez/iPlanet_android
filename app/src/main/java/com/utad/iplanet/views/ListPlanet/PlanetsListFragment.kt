@@ -1,16 +1,18 @@
 package com.utad.iplanet.views.ListPlanet
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.GridLayout
+
 import android.widget.Toast
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
-import com.utad.iplanet.R
-import com.utad.iplanet.databinding.FragmentEditPlanetBinding
+import com.google.android.material.chip.Chip
+
 import com.utad.iplanet.databinding.FragmentPlanetsListBinding
 import com.utad.iplanet.model.PlanetItem
 import com.utad.iplanet.model.PlanetService
@@ -23,7 +25,17 @@ import retrofit2.converter.gson.GsonConverterFactory
 class PlanetsListFragment : Fragment() {
     private var _binding: FragmentPlanetsListBinding? = null
     private val binding get() = _binding!!
-    private val adapter =  PlanetAdapter()
+    private val adapter =  PlanetAdapter {
+        val action = PlanetsListFragmentDirections.actionPlanetsListFragmentToPlanetDetailFragment(it.id)
+        findNavController().navigate(action)
+    }
+
+    private val retrofit = Retrofit.Builder()
+        .baseUrl("https://iplanet-api.herokuapp.com")
+        .addConverterFactory(GsonConverterFactory.create())
+        .build()
+    private val service = retrofit.create(PlanetService::class.java)
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -34,13 +46,9 @@ class PlanetsListFragment : Fragment() {
         return view
     }
 
-    private fun requestData(){
-        val retrofit = Retrofit.Builder()
-            .baseUrl("https://iplanet-api.herokuapp.com")
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
-        val service = retrofit.create(PlanetService::class.java)
 
+
+    fun requestAllItems(){
         service.getAllPlanets().enqueue(object : Callback<List<PlanetItem>>{
             override fun onResponse(
                 call: Call<List<PlanetItem>>,
@@ -52,24 +60,102 @@ class PlanetsListFragment : Fragment() {
                     Toast.makeText(context, "Error en la respuesta", Toast.LENGTH_LONG)
                 }
             }
-
             override fun onFailure(call: Call<List<PlanetItem>>, t: Throwable) {
                 Toast.makeText(context, "Error en la conexion", Toast.LENGTH_LONG)
                 Log.e("requestData", "error")
             }
         })
     }
+    fun requestAllPlanetsData(){
+        service.getPlanetByCategoryPlanets().enqueue(object : Callback<List<PlanetItem>>{
+            override fun onResponse(
+                call: Call<List<PlanetItem>>,
+                response: Response<List<PlanetItem>>
+            ) {
+                if (response.isSuccessful){
+                    adapter.submitList(response.body())
+                } else {
+                    Toast.makeText(context, "Error en la respuesta", Toast.LENGTH_LONG)
+                }
+            }
+            override fun onFailure(call: Call<List<PlanetItem>>, t: Throwable) {
+                Toast.makeText(context, "Error en la conexion", Toast.LENGTH_LONG)
+                Log.e("requestData", "error")
+            }
+        })
+    }
+
+    fun requestAllStarsData(){
+        service.getPlanetByCategoryStars().enqueue(object : Callback<List<PlanetItem>>{
+            override fun onResponse(
+                call: Call<List<PlanetItem>>,
+                response: Response<List<PlanetItem>>
+            ) {
+                if (response.isSuccessful){
+                    adapter.submitList(response.body())
+                } else {
+                    Toast.makeText(context, "Error en la respuesta", Toast.LENGTH_LONG)
+                }
+            }
+            override fun onFailure(call: Call<List<PlanetItem>>, t: Throwable) {
+                Toast.makeText(context, "Error en la conexion", Toast.LENGTH_LONG)
+                Log.e("requestData", "error")
+            }
+        })
+    }
+
+    fun requestAllMoonsData(){
+        service.getPlanetByCategoryMoons().enqueue(object : Callback<List<PlanetItem>>{
+            override fun onResponse(
+                call: Call<List<PlanetItem>>,
+                response: Response<List<PlanetItem>>
+            ) {
+                if (response.isSuccessful){
+                    adapter.submitList(response.body())
+                } else {
+                    Toast.makeText(context, "Error en la respuesta", Toast.LENGTH_LONG)
+                }
+            }
+            override fun onFailure(call: Call<List<PlanetItem>>, t: Throwable) {
+                Toast.makeText(context, "Error en la conexion", Toast.LENGTH_LONG)
+                Log.e("requestData", "error")
+            }
+        })
+    }
+
+    @SuppressLint("NotifyDataSetChanged")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        requestData()
-        configRv()
 
-        val planets = mutableListOf<PlanetItem>()
-        for (index in 1 .. 10){
-            PlanetItem(index.toString(), "name:${index}",index,index, index, "planetMassKg:${index}", index, "category:${index}","planetUrlImage:${index}")
+        binding.floatingActionButton3.setOnClickListener(){
+            requestAllItems()
+            adapter.notifyDataSetChanged()
         }
-        adapter.submitList(planets)
+
+        binding.cg.setOnCheckedChangeListener { group, checkedId ->
+            val chip:Chip? = group.findViewById(checkedId)
+
+            if (chip?.isChecked == true){
+                if (chip.text.equals("Planets")){
+                    requestAllPlanetsData()
+                    adapter.notifyDataSetChanged()
+                } else if (chip.text.equals("Stars")){
+                    requestAllStarsData()
+                    adapter.notifyDataSetChanged()
+                }else if (chip.text.equals("Moons")){
+                    requestAllMoonsData()
+                    adapter.notifyDataSetChanged()
+                }
+            } else {
+                requestAllItems()
+                adapter.notifyDataSetChanged()
+            }
+        }
+
+        requestAllItems()
+        configRv()
     }
+
 
     private fun configRv(){
         binding.recyclerView.layoutManager = GridLayoutManager(context, 2)
