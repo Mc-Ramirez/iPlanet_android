@@ -23,36 +23,7 @@ class PlanetDetailFragment : Fragment() {
     private var _binding: FragmentPlanetDetailBinding? = null
     private val binding get() = _binding!!
     private val args: PlanetDetailFragmentArgs by navArgs()
-    private val itemPlanet = mutableListOf<PlanetItem>()
-
-    private val retrofit = Retrofit.Builder()
-        .baseUrl("https://iplanet-api.herokuapp.com")
-        .addConverterFactory(GsonConverterFactory.create())
-        .build()
-    private val service = retrofit.create(PlanetService::class.java)
-
-
-
-    private fun requestItemData(id: String) {
-        service.getPlanetById("/getplanetbyid/$id/").enqueue(object : Callback<PlanetItem> {
-            override fun onResponse(call: Call<PlanetItem>, response: Response<PlanetItem>) {
-                if (response.isSuccessful) {
-                    val item: PlanetItem? = response.body()
-                        itemPlanet.clear()
-                        itemPlanet.add(item!!)
-                        //Toast.makeText(context, itemPlanet[0].planetName, Toast.LENGTH_LONG).show()
-                } else {
-                    Toast.makeText(context, "Error en la respuesta", Toast.LENGTH_LONG)
-                }
-            }
-
-            override fun onFailure(call: Call<PlanetItem>, t: Throwable) {
-                Toast.makeText(context, "Error en la conexion", Toast.LENGTH_LONG)
-                Log.e("requestData", "error")
-            }
-
-        })
-    }
+    private lateinit var itemPlanet : PlanetItem
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -66,8 +37,8 @@ class PlanetDetailFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        requestItemData(args.itemToShow)
-        Toast.makeText(context, "$itemPlanet", Toast.LENGTH_LONG).show()
+        itemPlanet = args.thePlanetToShow
+        Toast.makeText(context, "${itemPlanet.planetName}.", Toast.LENGTH_LONG).show()
 
 
     }

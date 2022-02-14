@@ -43,7 +43,7 @@
         <action
             android:id="@+id/action_planetDetailFragment_to_editPlanetFragment"
             app:destination="@id/editPlanetFragment" />
-        <argument android:name="itemToShow" />
+
     </fragment>
     <fragment
         android:id="@+id/planetsListFragment"

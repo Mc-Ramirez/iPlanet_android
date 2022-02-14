@@ -25,8 +25,9 @@ import retrofit2.converter.gson.GsonConverterFactory
 class PlanetsListFragment : Fragment() {
     private var _binding: FragmentPlanetsListBinding? = null
     private val binding get() = _binding!!
+
     private val adapter =  PlanetAdapter {
-        val action = PlanetsListFragmentDirections.actionPlanetsListFragmentToPlanetDetailFragment(it.id)
+        val action = PlanetsListFragmentDirections.actionPlanetsListFragmentToPlanetDetailFragment()
         findNavController().navigate(action)
     }
 
@@ -66,46 +67,9 @@ class PlanetsListFragment : Fragment() {
             }
         })
     }
-    fun requestAllPlanetsData(){
-        service.getPlanetByCategoryPlanets().enqueue(object : Callback<List<PlanetItem>>{
-            override fun onResponse(
-                call: Call<List<PlanetItem>>,
-                response: Response<List<PlanetItem>>
-            ) {
-                if (response.isSuccessful){
-                    adapter.submitList(response.body())
-                } else {
-                    Toast.makeText(context, "Error en la respuesta", Toast.LENGTH_LONG)
-                }
-            }
-            override fun onFailure(call: Call<List<PlanetItem>>, t: Throwable) {
-                Toast.makeText(context, "Error en la conexion", Toast.LENGTH_LONG)
-                Log.e("requestData", "error")
-            }
-        })
-    }
 
-    fun requestAllStarsData(){
-        service.getPlanetByCategoryStars().enqueue(object : Callback<List<PlanetItem>>{
-            override fun onResponse(
-                call: Call<List<PlanetItem>>,
-                response: Response<List<PlanetItem>>
-            ) {
-                if (response.isSuccessful){
-                    adapter.submitList(response.body())
-                } else {
-                    Toast.makeText(context, "Error en la respuesta", Toast.LENGTH_LONG)
-                }
-            }
-            override fun onFailure(call: Call<List<PlanetItem>>, t: Throwable) {
-                Toast.makeText(context, "Error en la conexion", Toast.LENGTH_LONG)
-                Log.e("requestData", "error")
-            }
-        })
-    }
-
-    fun requestAllMoonsData(){
-        service.getPlanetByCategoryMoons().enqueue(object : Callback<List<PlanetItem>>{
+    fun requestItemByCategory(category: String){
+        service.getItemsByCategory(category).enqueue(object : Callback<List<PlanetItem>>{
             override fun onResponse(
                 call: Call<List<PlanetItem>>,
                 response: Response<List<PlanetItem>>
@@ -137,13 +101,13 @@ class PlanetsListFragment : Fragment() {
 
             if (chip?.isChecked == true){
                 if (chip.text.equals("Planets")){
-                    requestAllPlanetsData()
+                    requestItemByCategory("Planet")
                     adapter.notifyDataSetChanged()
                 } else if (chip.text.equals("Stars")){
-                    requestAllStarsData()
+                    requestItemByCategory("Star")
                     adapter.notifyDataSetChanged()
                 }else if (chip.text.equals("Moons")){
-                    requestAllMoonsData()
+                    requestItemByCategory("Moon")
                     adapter.notifyDataSetChanged()
                 }
             } else {

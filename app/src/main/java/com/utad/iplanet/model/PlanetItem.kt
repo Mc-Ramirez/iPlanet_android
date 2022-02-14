@@ -2,6 +2,7 @@ package com.utad.iplanet.model
 
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
+import java.io.Serializable
 
 data class PlanetItem(
     @SerializedName("id") val id : String,
@@ -13,4 +14,4 @@ data class PlanetItem(
     @SerializedName("planetDensity") val planetDensity : String,
     @SerializedName("category") val category : String,
     @SerializedName("planetUrlImage") val planetUrlImage : String
-)
+) : Serializable
