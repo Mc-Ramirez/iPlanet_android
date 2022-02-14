@@ -22,8 +22,6 @@ import retrofit2.converter.gson.GsonConverterFactory
 class PlanetDetailFragment : Fragment() {
     private var _binding: FragmentPlanetDetailBinding? = null
     private val binding get() = _binding!!
-    private val args: PlanetDetailFragmentArgs by navArgs()
-    private lateinit var itemPlanet : PlanetItem
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -37,8 +35,6 @@ class PlanetDetailFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        itemPlanet = args.thePlanetToShow
-        Toast.makeText(context, "${itemPlanet.planetName}.", Toast.LENGTH_LONG).show()
 
 
     }

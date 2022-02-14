@@ -13,7 +13,8 @@ interface PlanetService {
     @GET("/getplanetbycategory/{category}")
     fun getItemsByCategory(@Path("category") category: String): Call<List<PlanetItem>>
 
-
+    @GET("getplanetbyname/{planetName}")
+    fun getItemByName(@Path("planetName") planetName: String): Call<List<PlanetItem>>
 
 
 
