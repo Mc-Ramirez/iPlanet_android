@@ -64,8 +64,4 @@ Entregar una video de máximo 5 minutos, explicando el flujo de la aplicación y
 Takes two numbers and returns the sum.
 
 
-## Appendix
-
-Any additional information goes here
-
 
