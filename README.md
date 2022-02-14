@@ -2,8 +2,8 @@
 ## Authors
 
 - [@4prkali](https://github.com/4prkali) - Alberto Rosello
-- [@Mc-Ramirez](https://github.com/Mc-Ramirez)
-- [@SergioRivera01](https://github.com/SergioRivera01)
+- [@Mc-Ramirez](https://github.com/Mc-Ramirez) - Felipe Ramírez
+- [@SergioRivera01](https://github.com/SergioRivera01) - Sergio Rivera
 
 
 # UD7_01 - Proyecto Integrador Android
