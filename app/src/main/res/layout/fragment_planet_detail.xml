@@ -14,11 +14,11 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:background="#000000"
+        android:contentDescription="TODO"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/sun"
         tools:src="@drawable/sun" />
 
     <TextView
@@ -43,13 +43,12 @@
         android:background="#FFFFFF"
         android:fontFamily="sans-serif-condensed"
         android:padding="3dp"
-        android:text="SUN"
         android:textAlignment="center"
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="@+id/iv_planet"
         app:layout_constraintTop_toTopOf="@+id/iv_planet"
-        tools:text="SUN" />
+        tools:text="Planeta" />
 
     <TextView
         android:id="@+id/tv_labelCategory"
@@ -141,6 +140,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_labelRotation" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_labelRotation"
+        tools:ignore="TextContrastCheck" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

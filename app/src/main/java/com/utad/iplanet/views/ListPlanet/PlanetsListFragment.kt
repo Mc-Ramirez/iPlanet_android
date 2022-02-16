@@ -35,7 +35,7 @@ class PlanetsListFragment : Fragment()  {
     private val binding get() = _binding!!
 
     private val adapter =  PlanetAdapter {
-        val action = PlanetsListFragmentDirections.actionPlanetsListFragmentToPlanetDetailFragment()
+        val action = PlanetsListFragmentDirections.actionPlanetsListFragmentToPlanetDetailFragment(it.planetName)
         findNavController().navigate(action)
     }
 
