@@ -9,7 +9,7 @@
         android:id="@+id/addNewPlanetFragment"
         android:name="com.utad.iplanet.views.AddPlanet.AddNewPlanetFragment"
         android:label="fragment_add_new_planet"
-        tools:layout="@layout/fragment_add_new_planet" >
+        tools:layout="@layout/fragment_add_new_photo_planet" >
         <action
             android:id="@+id/action_addNewPlanetFragment_to_planetsListFragment"
             app:destination="@id/planetsListFragment" />
@@ -64,7 +64,7 @@
         android:id="@+id/addNewPhotoFragment"
         android:name="com.utad.iplanet.views.AddPlanet.addNewPhotoPlanet.AddNewPhotoFragment"
         android:label="fragment_add_new_photo"
-        tools:layout="@layout/fragment_add_new_photo" >
+        tools:layout="@layout/fragment_add_new_planet" >
         <action
             android:id="@+id/action_addNewPhotoFragment_to_addNewPlanetFragment"
             app:destination="@id/addNewPlanetFragment" />

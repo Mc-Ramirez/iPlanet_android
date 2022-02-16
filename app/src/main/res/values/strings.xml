@@ -2,4 +2,9 @@
     <string name="app_name">iPlanet</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="label" />
+    <string name="add_new_planet">Add New Planet</string>
+    <string name="name">Name</string>
+    <string name="todo">TODO</string>
+    <string name="moon">Moon</string>
 </resources>
