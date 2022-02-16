@@ -29,6 +29,10 @@ import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.*
+import android.text.TextUtils
+import android.view.Menu
+import com.utad.iplanet.R
+
 
 class PlanetsListFragment : Fragment()  {
     private var _binding: FragmentPlanetsListBinding? = null
@@ -124,17 +128,8 @@ class PlanetsListFragment : Fragment()  {
             requestAllItems()
             adapter.notifyDataSetChanged()
         }
-        binding.searchView.setOnQueryTextListener(object : android.widget.SearchView.OnQueryTextListener {
-            override fun onQueryTextSubmit(p0: String?): Boolean {
-                return false
-            }
 
-            override fun onQueryTextChange(p0: String?): Boolean {
-                Toast.makeText(context, "$p0", Toast.LENGTH_LONG).show()
-                return false
-            }
 
-        })
         binding.cg.setOnCheckedChangeListener { group, checkedId ->
             val chip:Chip? = group.findViewById(checkedId)
 
