@@ -30,7 +30,7 @@ class AddNewPlanetFragment : Fragment() {
 
     private var _binding: FragmentAddNewPlanetBinding? = null
     private val binding get() = _binding!!
-
+    private val defaultImg: String = "https://cdn.pixabay.com/photo/2017/03/02/15/09/planet-2111528_960_720.png"
 
     private val retrofit = Retrofit.Builder()
         .baseUrl("https://iplanet-api.herokuapp.com")
@@ -76,6 +76,11 @@ class AddNewPlanetFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        binding.btnNewPicture.setOnClickListener(){
+            val action = AddNewPlanetFragmentDirections.actionAddNewPlanetFragmentToAddNewPhotoFragment()
+            findNavController().navigate(action)
+        }
         binding.imageView3.imageURL("https://cdn.pixabay.com/photo/2017/03/02/15/09/planet-2111528_960_720.png")
         binding.btnCreateUser.setOnClickListener(){
             val thePlanetItem = PlanetBody("${binding.tfName.text}",
@@ -85,7 +90,7 @@ class AddNewPlanetFragment : Fragment() {
                 "${binding.tfName.text}",
                 "${binding.tfDensity.text}",
                 "${binding.tfCategory.text}",
-                "https://cdn.pixabay.com/photo/2017/03/02/15/09/planet-2111528_960_720.png")
+                "")
 
 
             addNewPlanetToDB(thePlanetItem)
