@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.utad.iplanet.databinding.FragmentPlanetDetailBinding
 import com.utad.iplanet.imageURL
@@ -45,10 +46,6 @@ class PlanetDetailFragment : Fragment() {
                     binding.tvRadius.text = response.body()?.planetEquatorialRadius ?: "No encontrado"
                     binding.tvRotation.text = response.body()?.planetRotationPeriod ?: "No encontrado"
                     response.body()?.planetUrlImage?.let { binding.ivPlanetImage.imageURL(it) }
-
-
-
-
                 } else {
                     Toast.makeText(context, "Error en la respuesta", Toast.LENGTH_LONG)
                 }
@@ -60,6 +57,27 @@ class PlanetDetailFragment : Fragment() {
             }
         })
     }
+
+    private fun deleteItemById(id:String){
+        service.deletePlanetById(id).enqueue(object : Callback<String>{
+
+            override fun onResponse(call: Call<String>, response: Response<String>) {
+                if (response.isSuccessful){
+
+                    Toast.makeText(context, "Ha funcionado", Toast.LENGTH_LONG).show()
+
+                } else {
+                    Toast.makeText(context, "Error en la respuesta", Toast.LENGTH_LONG).show()
+                }
+            }
+
+            override fun onFailure(call: Call<String>, t: Throwable) {
+                Toast.makeText(context, "Error en la conexion", Toast.LENGTH_LONG).show()
+                Log.e("requestData", "error")
+            }
+        })
+    }
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -75,10 +93,18 @@ class PlanetDetailFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
        requestItemById(args.planetId)
        // Log.d("Response","Hola ${args.planetId}")
-
+        binding.button3.setOnClickListener(){
+            deleteItemById(args.planetId)
+            moveBackToDetail()
+        }
 
     }
 
+    fun moveBackToDetail(){
+        val action = PlanetDetailFragmentDirections.actionPlanetDetailFragmentToPlanetsListFragment()
+        findNavController().navigate(action)
+
+    }
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null

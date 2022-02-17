@@ -21,6 +21,6 @@ interface PlanetService {
      @POST("/addplanet")
      fun addNewPlanet(@Body planetBody: PlanetBody): Call<String>
 
-     @DELETE("/detelebyid/{id}")
+     @DELETE("/deletebyid/{id}")
      fun deletePlanetById(@Path("id") id:String): Call<String>
 }
