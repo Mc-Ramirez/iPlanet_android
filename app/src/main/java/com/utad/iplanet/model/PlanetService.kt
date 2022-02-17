@@ -18,7 +18,4 @@ interface PlanetService {
 
     @GET("/getplanetbyid/{id}")
     fun getItemById(@Path("id") id: String): Call<PlanetItem>
-
-
-
 }

@@ -1,10 +1,8 @@
 package com.utad.iplanet.views.DetailPlanet
 
 
-import android.media.Image
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -24,7 +22,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 class PlanetDetailFragment : Fragment() {
     private var _binding: FragmentPlanetDetailBinding? = null
     private val binding get() = _binding!!
-    private val args: PlanetDetailFragmentArgs by navArgs()
+   // private val args: PlanetDetailFragmentArgs by navArgs()
 
     private var planetNameDetail : String = "No encontrado"
 
@@ -39,8 +37,8 @@ class PlanetDetailFragment : Fragment() {
 
             override fun onResponse(call: Call<PlanetItem>, response: Response<PlanetItem>) {
                 if (response.isSuccessful){
-                    binding.planetNameInDetail.text = response.body()?.planetName?.toUpperCase() ?: "No se ha encontrado"
-                    response.body()?.planetUrlImage?.let { binding.ivPlanetImageInDetail.imageURL(it) }
+                   // binding.tvPlanetData.text = response.body()?.planetName?.toUpperCase() ?: "No se ha encontrado"
+                   // response.body()?.planetUrlImage?.let { binding.ivPlanet.imageURL(it) }
 
                 } else {
                     Toast.makeText(context, "Error en la respuesta", Toast.LENGTH_LONG)
@@ -66,8 +64,8 @@ class PlanetDetailFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        requestItemById(args.planetId)
-        Log.d("Response","Hola ${args.planetId}")
+       // requestItemById(args.planetId)
+       // Log.d("Response","Hola ${args.planetId}")
 
     }
 

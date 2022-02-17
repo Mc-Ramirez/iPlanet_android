@@ -14,4 +14,4 @@ data class PlanetItem(
     @SerializedName("planetDensity") val planetDensity : String,
     @SerializedName("category") val category : String,
     @SerializedName("planetUrlImage") val planetUrlImage : String
-) : Serializable
+)
