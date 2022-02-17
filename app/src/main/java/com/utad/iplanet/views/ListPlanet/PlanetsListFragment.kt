@@ -62,23 +62,22 @@ class PlanetsListFragment : Fragment()  {
 
 
     fun requestAllItems(){
-        service.getAllPlanets().enqueue(object : Callback<List<PlanetItem>>{
-            override fun onResponse(
-                call: Call<List<PlanetItem>>,
-                response: Response<List<PlanetItem>>
-            ) {
-                if (response.isSuccessful){
-                    adapter.submitList(response.body())
-                } else {
-                    Toast.makeText(context, "Error en la respuesta", Toast.LENGTH_LONG)
+            service.getAllPlanets().enqueue(object : Callback<List<PlanetItem>>{
+                override fun onResponse( call: Call<List<PlanetItem>>, response: Response<List<PlanetItem>>)
+                {
+                    if (response.isSuccessful){
+                        adapter.submitList(response.body())
+                    } else {
+                        Toast.makeText(context, "Error en la respuesta", Toast.LENGTH_LONG)
+                    }
                 }
-            }
-            override fun onFailure(call: Call<List<PlanetItem>>, t: Throwable) {
-                Toast.makeText(context, "Error en la conexion", Toast.LENGTH_LONG)
-                Log.e("requestData", "error")
-            }
-        })
-    }
+                override fun onFailure(call: Call<List<PlanetItem>>, t: Throwable) {
+                    Toast.makeText(context, "Error en la conexion", Toast.LENGTH_LONG)
+                    Log.e("requestData", "error")
+                }
+            })
+        }
+
 
     fun requestItemByCategory(category: String){
         service.getItemsByCategory(category).enqueue(object : Callback<List<PlanetItem>>{
@@ -148,6 +147,11 @@ class PlanetsListFragment : Fragment()  {
                 requestAllItems()
                 adapter.notifyDataSetChanged()
             }
+        }
+
+        binding.floatingActionButton2.setOnClickListener(){
+            val action = PlanetsListFragmentDirections.actionPlanetsListFragmentToAddNewPlanetFragment()
+            findNavController().navigate(action)
         }
 
         requestAllItems()
