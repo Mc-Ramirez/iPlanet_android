@@ -1,167 +1,291 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".views.AddPlanet.addNewPhotoPlanet.AddNewPhotoFragment">
+    tools:context=".views.DetailPlanet.PlanetDetailFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-
-    <ImageButton
-        android:id="@+id/btn_addImg"
-        android:layout_width="401dp"
-        android:layout_height="205dp"
-        android:contentDescription="@string/todo"
-        android:src="@android:drawable/ic_menu_gallery"
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView3"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="20dp"
+        app:cardCornerRadius="15dp"
+        app:cardElevation="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="SpeakableTextPresentCheck" />
-
-    <Button
-        android:id="@+id/btn_addImg2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:backgroundTint="@android:color/holo_green_light"
-        android:text="@string/add_new_planet"
-        android:textColor="#0D47A1"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="163dp"
-        tools:layout_editor_absoluteY="651dp" />
-
-    <EditText
-        android:id="@+id/txt_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:autofillHints=""
-        android:ems="10"
-        android:hint="@string/name"
-        android:inputType="textPersonName"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_addImg"
-        tools:ignore="TouchTargetSizeCheck" />
-
-    <EditText
-        android:id="@+id/txt_density"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:ems="10"
-        android:hint="Density"
-        android:inputType="textPersonName"
-        android:minHeight="48dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_name" />
-
-    <EditText
-        android:id="@+id/txt_mass"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:ems="10"
-        android:hint="Mass"
-        android:inputType="textPersonName"
-        android:minHeight="48dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_density" />
-
-    <EditText
-        android:id="@+id/distanceToSun"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:ems="10"
-        android:hint="Distance To Sun"
-        android:inputType="textPersonName"
-        android:minHeight="48dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_mass" />
-
-    <EditText
-        android:id="@+id/editTextTextPersonName5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:minHeight="48dp"
-        android:hint="Equatorial Radius"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/distanceToSun" />
-
-    <EditText
-        android:id="@+id/editTextTextPersonName6"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:minHeight="48dp"
-        android:hint="Rotation Period"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName5" />
-
-    <RadioGroup
-        android:id="@+id/radioGroup"
-        android:layout_width="395dp"
-        android:layout_height="40dp"
-        app:layout_constraintBottom_toTopOf="@+id/btn_addImg2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.312"
-        app:layout_constraintStart_toStartOf="parent" >
+        app:layout_constraintTop_toTopOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <RadioButton
-                android:id="@+id/radioBtnMoon"
-                android:layout_width="81dp"
-                android:layout_height="40dp"
-                android:text="@string/moon"
+            <EditText
+                android:id="@+id/tfDistanceToSun"
+                android:layout_width="0dp"
+                android:layout_height="38dp"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginEnd="24dp"
+                android:ems="10"
+                android:hint="Distance "
+                android:inputType="textPersonName"
                 app:layout_constraintEnd_toEndOf="parent"
-                tools:ignore="MissingConstraints,TouchTargetSizeCheck"
-                tools:layout_editor_absoluteY="0dp" />
+                app:layout_constraintStart_toEndOf="@+id/tv_label_distance"
+                app:layout_constraintTop_toBottomOf="@+id/tfMass" />
 
-            <RadioButton
-                android:id="@+id/radioBtnPlanet"
-                android:layout_width="100dp"
-                android:layout_height="40dp"
-                android:text="Planet"
+            <EditText
+                android:id="@+id/tfEquatorial"
+                android:layout_width="0dp"
+                android:layout_height="38dp"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginEnd="24dp"
+                android:ems="10"
+                android:hint="Radius"
+                android:inputType="textPersonName"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/tv_label_radius"
+                app:layout_constraintTop_toBottomOf="@+id/tfDistanceToSun" />
+
+            <EditText
+                android:id="@+id/tfRotationPeriod"
+                android:layout_width="0dp"
+                android:layout_height="38dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginEnd="24dp"
+                android:ems="10"
+                android:hint="Period"
+                android:inputType="textPersonName"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/tv_label_rotation"
+                app:layout_constraintTop_toBottomOf="@+id/tfEquatorial" />
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardView4"
+                android:layout_width="369dp"
+                android:layout_height="wrap_content"
+                app:cardElevation="20dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                tools:ignore="TouchTargetSizeCheck" />
+                app:layout_constraintVertical_bias="0.0" />
 
-            <RadioButton
-                android:id="@+id/radioBtnStar"
-                android:layout_width="83dp"
-                android:layout_height="42dp"
-                android:text="Star"
-                app:layout_constraintEnd_toStartOf="@+id/radioBtnMoon"
-                app:layout_constraintStart_toEndOf="@+id/radioBtnPlanet"
+            <Button
+                android:id="@+id/btnCreateUser"
+                style="@style/Widget.Material3.ExtendedFloatingActionButton.Primary"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_marginStart="30dp"
+                android:layout_marginEnd="30dp"
+                android:layout_marginBottom="30dp"
+                android:contextClickable="false"
+                android:elegantTextHeight="false"
+                android:freezesText="false"
+                android:text="Save"
+                android:textAlignment="inherit"
+                android:textAllCaps="true"
+                android:textColor="#0027FF"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:cornerRadius="10dp"
+                app:icon="@drawable/ic_baseline_edit_24"
+                app:iconGravity="textEnd"
+                app:iconTint="#0027FF"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                tools:ignore="TouchTargetSizeCheck" />
+                app:layout_constraintVertical_bias="1.0" />
+
+            <TextView
+                android:id="@+id/tv_label_rotation"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="30dp"
+                android:layout_marginEnd="5dp"
+                android:text="Rotation Peridod:"
+                android:textAppearance="@style/LabelsTitulos"
+                app:layout_constraintBottom_toBottomOf="@+id/tfRotationPeriod"
+                app:layout_constraintEnd_toStartOf="@+id/tfRotationPeriod"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/tfRotationPeriod" />
+
+            <TextView
+                android:id="@+id/tv_lable_category"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="30dp"
+                android:text="Category:"
+                android:textAppearance="@style/LabelsTitulos"
+                app:layout_constraintBottom_toBottomOf="@+id/tfCategory"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/tfCategory" />
+
+            <TextView
+                android:id="@+id/tv_label_densitiy"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="30dp"
+                android:text="Density:"
+                android:textAppearance="@style/LabelsTitulos"
+                app:layout_constraintBottom_toBottomOf="@+id/tfDensity"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/tfDensity" />
+
+            <TextView
+                android:id="@+id/tv_label_mass"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="30dp"
+                android:text="Mass:"
+                android:textAppearance="@style/LabelsTitulos"
+                app:layout_constraintBottom_toBottomOf="@+id/tfMass"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/tfMass" />
+
+            <TextView
+                android:id="@+id/tv_label_distance"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="30dp"
+                android:text="Distance to The Sun:"
+                android:textAppearance="@style/LabelsTitulos"
+                app:layout_constraintBottom_toBottomOf="@+id/tfDistanceToSun"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/tfDistanceToSun" />
+
+            <TextView
+                android:id="@+id/tv_label_radius"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="30dp"
+                android:text="Equatorial Radius:"
+                android:textAppearance="@style/LabelsTitulos"
+                app:layout_constraintBottom_toBottomOf="@+id/tfEquatorial"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/tfEquatorial" />
+
+            <TextView
+                android:id="@+id/tv_lable_category2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="30dp"
+                android:text="Name:"
+                android:textAppearance="@style/LabelsTitulos"
+                app:layout_constraintBottom_toBottomOf="@+id/tfNewPlanetURL"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/tfNewPlanetURL" />
+
+            <Button
+                android:id="@+id/btnNewPicture"
+                style="@style/Widget.MaterialComponents.ExtendedFloatingActionButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="148dp"
+                android:layout_marginEnd="30dp"
+                android:text="Set Photo"
+                android:textColor="#FFFFFF"
+                android:textColorLink="#FFFFFF"
+                android:textStyle="bold"
+                app:cornerRadius="10dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/cardView4" />
+
+            <EditText
+                android:id="@+id/tfCategory"
+                android:layout_width="0dp"
+                android:layout_height="38dp"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginEnd="24dp"
+                android:ems="10"
+                android:hint="Star | Planet | Moon"
+                android:inputType="textPersonName"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toEndOf="@+id/tv_lable_category"
+                app:layout_constraintTop_toBottomOf="@+id/tfNewPlanetURL" />
+
+            <EditText
+                android:id="@+id/tfDensity"
+                android:layout_width="0dp"
+                android:layout_height="38dp"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginEnd="24dp"
+                android:ems="10"
+                android:hint="Planet density"
+                android:inputType="textPersonName"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/tv_label_densitiy"
+                app:layout_constraintTop_toBottomOf="@+id/tfCategory" />
+
+            <EditText
+                android:id="@+id/tfNewPlanetURL"
+                android:layout_width="0dp"
+                android:layout_height="38dp"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginEnd="24dp"
+                android:ems="10"
+                android:hint="Planet name"
+                android:inputType="textPersonName"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.04"
+                app:layout_constraintStart_toEndOf="@+id/tv_lable_category2"
+                app:layout_constraintTop_toBottomOf="@+id/btnNewPicture" />
+
+            <EditText
+                android:id="@+id/tfMass"
+                android:layout_width="0dp"
+                android:layout_height="38dp"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginEnd="24dp"
+                android:ems="10"
+                android:hint="Planet Mass"
+                android:inputType="textPersonName"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toEndOf="@+id/tv_label_mass"
+                app:layout_constraintTop_toBottomOf="@+id/tfDensity" />
+
+            <ImageView
+                android:id="@+id/imageView3"
+                android:layout_width="130dp"
+                android:layout_height="130dp"
+                app:layout_constraintBottom_toTopOf="@+id/btnNewPicture"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:src="@drawable/img" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
-    </RadioGroup>
+    </androidx.cardview.widget.CardView>
 
-    <TextView
-        android:id="@+id/textView2"
+    <Button
+        android:id="@+id/btnGoBackToList"
+        style="@style/Widget.Material3.Button.TextButton"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="12dp"
-        android:text="Category"
-        app:layout_constraintBottom_toTopOf="@+id/radioGroup"
+        android:layout_height="0dp"
+        android:layout_marginStart="20dp"
+        android:text="go back"
+        android:textAllCaps="true"
+        app:icon="@drawable/ic_baseline_arrow_back_24"
+        app:layout_constraintBottom_toTopOf="@+id/cardView3"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

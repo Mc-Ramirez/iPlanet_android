@@ -103,7 +103,7 @@
             </androidx.cardview.widget.CardView>
 
             <Button
-                android:id="@+id/btnEdit"
+                android:id="@+id/btnEditPlanet"
                 style="@style/Widget.MaterialComponents.ExtendedFloatingActionButton"
                 android:layout_width="wrap_content"
                 android:layout_height="48dp"
@@ -147,7 +147,7 @@
                 app:icon="@drawable/ic_baseline_delete_forever_24"
                 app:iconGravity="textEnd"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/btnEdit"
+                app:layout_constraintEnd_toStartOf="@+id/btnCreateUser"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="1.0" />

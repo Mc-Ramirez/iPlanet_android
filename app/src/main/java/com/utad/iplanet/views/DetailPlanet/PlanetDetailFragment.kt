@@ -92,7 +92,7 @@ class PlanetDetailFragment : Fragment() {
             moveBackToDetail()
         }
 
-        binding.btnEdit.setOnClickListener(){
+        binding.btnEditPlanet.setOnClickListener(){
             val action = PlanetDetailFragmentDirections.actionPlanetDetailFragmentToEditPlanetFragment()
             findNavController().navigate(action)
         }

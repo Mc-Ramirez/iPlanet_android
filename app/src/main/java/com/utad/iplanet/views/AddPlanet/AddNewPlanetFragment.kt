@@ -1,5 +1,6 @@
 package com.utad.iplanet.views.AddPlanet
 
+import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -7,12 +8,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.navigation.fragment.findNavController
+import com.google.android.material.snackbar.BaseTransientBottomBar
+import com.google.android.material.snackbar.Snackbar
 import com.utad.iplanet.R
 import com.utad.iplanet.databinding.FragmentAddNewPlanetBinding
 import com.utad.iplanet.databinding.FragmentPlanetDetailBinding
 import com.utad.iplanet.model.PlanetBody
 import com.utad.iplanet.model.PlanetItem
 import com.utad.iplanet.model.PlanetService
+import com.utad.iplanet.views.DetailPlanet.PlanetDetailFragmentDirections
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -62,10 +67,19 @@ class AddNewPlanetFragment : Fragment() {
 
     }
 
+    fun moveBackToDetail(){
+        val action = AddNewPlanetFragmentDirections.actionAddNewPlanetFragmentToPlanetsListFragment()
+        findNavController().navigate(action)
+
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.btnAddImg2.setOnClickListener(){
+        binding.btnCreateUser.setOnClickListener(){
             addNewPlanetToDB()
+            Snackbar.make(binding.root,"Planeta creado", BaseTransientBottomBar.LENGTH_SHORT
+            ).setBackgroundTint(Color.BLACK).show()
+            moveBackToDetail()
         }
     }
 
