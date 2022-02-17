@@ -9,6 +9,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
 import com.utad.iplanet.databinding.FragmentPlanetDetailBinding
 import com.utad.iplanet.imageURL
