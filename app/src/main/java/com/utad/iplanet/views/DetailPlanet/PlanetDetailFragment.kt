@@ -25,7 +25,6 @@ class PlanetDetailFragment : Fragment() {
     private val binding get() = _binding!!
     private val args: PlanetDetailFragmentArgs by navArgs()
 
-    private var planetNameDetail : String = "No encontrado"
 
     private val retrofit = Retrofit.Builder()
         .baseUrl("https://iplanet-api.herokuapp.com")
