@@ -22,7 +22,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 class PlanetDetailFragment : Fragment() {
     private var _binding: FragmentPlanetDetailBinding? = null
     private val binding get() = _binding!!
-   // private val args: PlanetDetailFragmentArgs by navArgs()
+    private val args: PlanetDetailFragmentArgs by navArgs()
 
     private var planetNameDetail : String = "No encontrado"
 
@@ -37,8 +37,17 @@ class PlanetDetailFragment : Fragment() {
 
             override fun onResponse(call: Call<PlanetItem>, response: Response<PlanetItem>) {
                 if (response.isSuccessful){
-                   // binding.tvPlanetData.text = response.body()?.planetName?.toUpperCase() ?: "No se ha encontrado"
-                   // response.body()?.planetUrlImage?.let { binding.ivPlanet.imageURL(it) }
+                    binding.tvPlanetName.text = response.body()?.planetName ?: "No encontrado"
+                    binding.tvCathegory.text = response.body()?.category ?: "No encontrado"
+                    binding.tvDensity.text = response.body()?.planetDensity ?: "No encontrado"
+                    binding.tvDistance.text = response.body()?.planetDistanceMio ?: "No encontrado"
+                    binding.tvMass.text = response.body()?.planetMassKg ?: "No encontrado"
+                    binding.tvRadius.text = response.body()?.planetEquatorialRadius ?: "No encontrado"
+                    binding.tvRotation.text = response.body()?.planetRotationPeriod ?: "No encontrado"
+                    response.body()?.planetUrlImage?.let { binding.ivPlanetImage.imageURL(it) }
+
+
+
 
                 } else {
                     Toast.makeText(context, "Error en la respuesta", Toast.LENGTH_LONG)
@@ -64,8 +73,9 @@ class PlanetDetailFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-       // requestItemById(args.planetId)
+       requestItemById(args.planetId)
        // Log.d("Response","Hola ${args.planetId}")
+
 
     }
 
