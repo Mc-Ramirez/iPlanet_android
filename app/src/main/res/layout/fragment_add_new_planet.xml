@@ -180,9 +180,9 @@
                 android:layout_marginStart="30dp"
                 android:text="Name:"
                 android:textAppearance="@style/LabelsTitulos"
-                app:layout_constraintBottom_toBottomOf="@+id/tfNewPlanetURL"
+                app:layout_constraintBottom_toBottomOf="@+id/tfName"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/tfNewPlanetURL" />
+                app:layout_constraintTop_toTopOf="@+id/tfName" />
 
             <Button
                 android:id="@+id/btnNewPicture"
@@ -215,7 +215,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toEndOf="@+id/tv_lable_category"
-                app:layout_constraintTop_toBottomOf="@+id/tfNewPlanetURL" />
+                app:layout_constraintTop_toBottomOf="@+id/tfName" />
 
             <EditText
                 android:id="@+id/tfDensity"
@@ -232,7 +232,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/tfCategory" />
 
             <EditText
-                android:id="@+id/tfNewPlanetURL"
+                android:id="@+id/tfName"
                 android:layout_width="0dp"
                 android:layout_height="38dp"
                 android:layout_marginStart="5dp"

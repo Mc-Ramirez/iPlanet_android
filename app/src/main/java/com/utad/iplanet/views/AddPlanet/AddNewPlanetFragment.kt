@@ -14,6 +14,7 @@ import com.google.android.material.snackbar.Snackbar
 import com.utad.iplanet.R
 import com.utad.iplanet.databinding.FragmentAddNewPlanetBinding
 import com.utad.iplanet.databinding.FragmentPlanetDetailBinding
+import com.utad.iplanet.imageURL
 import com.utad.iplanet.model.PlanetBody
 import com.utad.iplanet.model.PlanetItem
 import com.utad.iplanet.model.PlanetService
@@ -29,6 +30,7 @@ class AddNewPlanetFragment : Fragment() {
 
     private var _binding: FragmentAddNewPlanetBinding? = null
     private val binding get() = _binding!!
+
 
     private val retrofit = Retrofit.Builder()
         .baseUrl("https://iplanet-api.herokuapp.com")
@@ -46,9 +48,8 @@ class AddNewPlanetFragment : Fragment() {
         return view
     }
 
-    private fun addNewPlanetToDB(){
-        val thePlanetItem = PlanetBody("Quakers","23323","elradio","el periodo","los kilos", "la densidad","lo que sea", "lo que sea2")
-        service.addNewPlanet(thePlanetItem).enqueue(object :Callback<String>{
+    private fun addNewPlanetToDB(thePlanetItem: PlanetBody){
+            service.addNewPlanet(thePlanetItem).enqueue(object :Callback<String>{
             override fun onResponse(call: Call<String>, response: Response<String>) {
                 if (response.isSuccessful){
                     val addedPlanet = response.body()
@@ -75,8 +76,19 @@ class AddNewPlanetFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding.imageView3.imageURL("https://cdn.pixabay.com/photo/2017/03/02/15/09/planet-2111528_960_720.png")
         binding.btnCreateUser.setOnClickListener(){
-            addNewPlanetToDB()
+            val thePlanetItem = PlanetBody("${binding.tfName.text}",
+                "${binding.tfDistanceToSun.text}",
+                "${binding.tfEquatorial.text}",
+                "${binding.tfRotationPeriod.text}",
+                "${binding.tfName.text}",
+                "${binding.tfDensity.text}",
+                "${binding.tfCategory.text}",
+                "https://cdn.pixabay.com/photo/2017/03/02/15/09/planet-2111528_960_720.png")
+
+
+            addNewPlanetToDB(thePlanetItem)
             Snackbar.make(binding.root,"Planeta creado", BaseTransientBottomBar.LENGTH_SHORT
             ).setBackgroundTint(Color.BLACK).show()
             moveBackToDetail()
