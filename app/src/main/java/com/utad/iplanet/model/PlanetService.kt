@@ -1,7 +1,6 @@
 package com.utad.iplanet.model
 
 
-import android.media.Image
 import retrofit2.Call
 import retrofit2.http.*
 

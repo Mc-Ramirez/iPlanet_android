@@ -1,6 +1,7 @@
 package com.utad.iplanet.views.DetailPlanet
 
 
+import android.graphics.Color.BLACK
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -10,6 +11,8 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import com.google.android.material.snackbar.BaseTransientBottomBar
+import com.google.android.material.snackbar.Snackbar
 import com.utad.iplanet.databinding.FragmentPlanetDetailBinding
 import com.utad.iplanet.imageURL
 import com.utad.iplanet.model.PlanetItem
@@ -45,14 +48,11 @@ class PlanetDetailFragment : Fragment() {
                     binding.tvRadius.text = response.body()?.planetEquatorialRadius ?: "No encontrado"
                     binding.tvRotation.text = response.body()?.planetRotationPeriod ?: "No encontrado"
                     response.body()?.planetUrlImage?.let { binding.ivPlanetImage.imageURL(it) }
-                } else {
-                    Toast.makeText(context, "Error en la respuesta", Toast.LENGTH_LONG)
                 }
             }
 
             override fun onFailure(call: Call<PlanetItem>, t: Throwable) {
-                Toast.makeText(context, "Error en la conexion", Toast.LENGTH_LONG)
-                Log.e("requestData", "error")
+
             }
         })
     }
@@ -61,17 +61,10 @@ class PlanetDetailFragment : Fragment() {
         service.deletePlanetById(id).enqueue(object : Callback<String>{
 
             override fun onResponse(call: Call<String>, response: Response<String>) {
-                if (response.isSuccessful){
-
-                    Toast.makeText(context, "Ha funcionado", Toast.LENGTH_LONG).show()
-
-                } else {
-                    Toast.makeText(context, "Error en la respuesta", Toast.LENGTH_LONG).show()
-                }
+                Log.d("RESPONSE","Planet with $id has been deleted")
             }
 
             override fun onFailure(call: Call<String>, t: Throwable) {
-                Toast.makeText(context, "Error en la conexion", Toast.LENGTH_LONG).show()
                 Log.e("requestData", "error")
             }
         })
@@ -84,19 +77,29 @@ class PlanetDetailFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentPlanetDetailBinding.inflate(inflater, container, false)
-        val view = binding.root
-        return view
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-       requestItemById(args.planetId)
-       // Log.d("Response","Hola ${args.planetId}")
-        binding.button3.setOnClickListener(){
+        requestItemById(args.planetId)
+        binding.btnDelete.setOnClickListener(){
             deleteItemById(args.planetId)
+
+                Snackbar.make(binding.root,"Planeta eliminado", BaseTransientBottomBar.LENGTH_SHORT
+                ).setBackgroundTint(BLACK).show()
+
             moveBackToDetail()
         }
 
+        binding.btnEdit.setOnClickListener(){
+            val action = PlanetDetailFragmentDirections.actionPlanetDetailFragmentToEditPlanetFragment()
+            findNavController().navigate(action)
+        }
+
+        binding.btnGoBackToList.setOnClickListener(){
+            moveBackToDetail()
+        }
     }
 
     fun moveBackToDetail(){

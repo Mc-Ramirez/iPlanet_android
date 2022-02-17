@@ -31,6 +31,8 @@ import retrofit2.converter.gson.GsonConverterFactory
 import java.util.*
 import android.text.TextUtils
 import android.view.Menu
+import com.google.android.material.snackbar.BaseTransientBottomBar
+import com.google.android.material.snackbar.Snackbar
 import com.utad.iplanet.R
 
 
@@ -162,6 +164,7 @@ class PlanetsListFragment : Fragment()  {
     private fun configRv(){
         binding.recyclerView.layoutManager = GridLayoutManager(context, 2)
         binding.recyclerView.adapter = adapter
+
     }
 
     override fun onDestroyView() {

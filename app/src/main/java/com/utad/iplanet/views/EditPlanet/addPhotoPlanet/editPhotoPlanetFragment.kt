@@ -6,7 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.utad.iplanet.databinding.FragmentEditPhotoPlanetBinding
-import com.utad.iplanet.databinding.FragmentPlanetDetailBinding
+
 
 class editPhotoPlanetFragment : Fragment() {
     private var _binding: FragmentEditPhotoPlanetBinding? = null

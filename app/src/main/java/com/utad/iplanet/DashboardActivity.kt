@@ -1,17 +1,9 @@
 package com.utad.iplanet
 
-import android.app.SearchManager
-import android.content.Context
+
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.PersistableBundle
-import android.util.AttributeSet
-import android.view.Menu
-import android.view.View
-import android.widget.SearchView
-import android.widget.Toast
 import com.utad.iplanet.databinding.ActivityDashboardBinding
-import com.utad.iplanet.views.ListPlanet.PlanetsListFragment
 
 class DashboardActivity : AppCompatActivity() {
     private lateinit var binding: ActivityDashboardBinding
