@@ -165,7 +165,7 @@ class PlanetsListFragment : Fragment() {
 
         binding.floatingActionButton2.setOnClickListener() {
             val action =
-                PlanetsListFragmentDirections.actionPlanetsListFragmentToAddNewPlanetFragment()
+                PlanetsListFragmentDirections.actionPlanetsListFragmentToAddNewPlanetFragment("")
             findNavController().navigate(action)
         }
 

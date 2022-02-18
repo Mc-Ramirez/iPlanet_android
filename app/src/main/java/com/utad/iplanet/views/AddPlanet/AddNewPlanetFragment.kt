@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import com.google.android.material.snackbar.BaseTransientBottomBar
 import com.google.android.material.snackbar.Snackbar
 import com.utad.iplanet.R
@@ -18,6 +19,7 @@ import com.utad.iplanet.imageURL
 import com.utad.iplanet.model.PlanetBody
 import com.utad.iplanet.model.PlanetItem
 import com.utad.iplanet.model.PlanetService
+import com.utad.iplanet.views.DetailPlanet.PlanetDetailFragmentArgs
 import com.utad.iplanet.views.DetailPlanet.PlanetDetailFragmentDirections
 import retrofit2.Call
 import retrofit2.Callback
@@ -31,6 +33,7 @@ class AddNewPlanetFragment : Fragment() {
     private var _binding: FragmentAddNewPlanetBinding? = null
     private val binding get() = _binding!!
     private val defaultImg: String = "https://cdn.pixabay.com/photo/2017/03/02/15/09/planet-2111528_960_720.png"
+    private val args: AddNewPlanetFragmentArgs by navArgs()
 
     private val retrofit = Retrofit.Builder()
         .baseUrl("https://iplanet-api.herokuapp.com")
@@ -76,7 +79,12 @@ class AddNewPlanetFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        var urlToAdd = ""
+        urlToAdd = if (args.imageUrl.isNullOrBlank()){
+            defaultImg
+        } else {
+            args.imageUrl
+        }
         binding.btnGoBackToList.setOnClickListener(){
             val action = AddNewPlanetFragmentDirections.actionAddNewPlanetFragmentToPlanetsListFragment()
             findNavController().navigate(action)
@@ -86,7 +94,7 @@ class AddNewPlanetFragment : Fragment() {
             val action = AddNewPlanetFragmentDirections.actionAddNewPlanetFragmentToAddNewPhotoFragment()
             findNavController().navigate(action)
         }
-        binding.imageView3.imageURL("https://cdn.pixabay.com/photo/2017/03/02/15/09/planet-2111528_960_720.png")
+        binding.imageView3.imageURL(urlToAdd)
         binding.btnCreateUser.setOnClickListener(){
             val thePlanetItem = PlanetBody("${binding.tfName.text}",
                 "${binding.tfDistanceToSun.text}",
@@ -95,7 +103,8 @@ class AddNewPlanetFragment : Fragment() {
                 "${binding.tfName.text}",
                 "${binding.tfDensity.text}",
                 "${binding.tfCategory.text}",
-                "$defaultImg")
+                urlToAdd
+            )
 
 
             addNewPlanetToDB(thePlanetItem)

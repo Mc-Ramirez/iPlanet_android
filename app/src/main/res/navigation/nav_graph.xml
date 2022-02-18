@@ -16,6 +16,9 @@
         <action
             android:id="@+id/action_addNewPlanetFragment_to_addNewPhotoFragment"
             app:destination="@id/addNewPhotoFragment" />
+        <argument
+            android:name="ImageUrl"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/editPlanetFragment"
