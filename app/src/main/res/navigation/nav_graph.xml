@@ -34,6 +34,11 @@
         <action
             android:id="@+id/action_editPlanetFragment_to_editPhotoPlanetFragment"
             app:destination="@id/editPhotoPlanetFragment" />
+        <argument
+            android:name="PlanetId"
+            app:argType="string" />
+        <argument android:name="planetImage"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/planetDetailFragment"
@@ -80,5 +85,10 @@
         <action
             android:id="@+id/action_editPhotoPlanetFragment_to_editPlanetFragment"
             app:destination="@id/editPlanetFragment" />
+        <argument android:name="ImageUrlEdit"
+            app:argType="string" />
+        <argument
+            android:name="planetId"
+            app:argType="string" />
     </fragment>
 </navigation>

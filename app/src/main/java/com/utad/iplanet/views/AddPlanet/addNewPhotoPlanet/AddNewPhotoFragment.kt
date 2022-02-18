@@ -1,11 +1,14 @@
 package com.utad.iplanet.views.AddPlanet.addNewPhotoPlanet
 
+import android.graphics.Color
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
+import com.google.android.material.snackbar.BaseTransientBottomBar
+import com.google.android.material.snackbar.Snackbar
 import com.utad.iplanet.databinding.FragmentAddNewPhotoPlanetBinding
 import com.utad.iplanet.imageURL
 import com.utad.iplanet.views.AddPlanet.AddNewPlanetFragmentDirections
@@ -34,16 +37,18 @@ class AddNewPhotoFragment : Fragment() {
         var userUrlImage = defaultImg
 
         binding.btnLoadPhoto.setOnClickListener(){
-            try {
+
                 binding.PlanetImage.imageURL(binding.tfNewPlanetURL.text.toString())
                 userUrlImage = binding.tfNewPlanetURL.text.toString()
                 binding.btnAddThePhoto.isEnabled = true
-            } catch (e:Exception){
-                binding.btnAddThePhoto.isEnabled = false
-            }
+
         }
 
         binding.btnAddThePhoto.setOnClickListener(){
+            Snackbar.make(binding.root,"Picture change", BaseTransientBottomBar.LENGTH_SHORT
+            ).setBackgroundTint(Color.BLACK).show()
+
+
             val action = AddNewPhotoFragmentDirections.actionAddNewPhotoFragmentToAddNewPlanetFragment(userUrlImage)
             findNavController().navigate(action)
         }

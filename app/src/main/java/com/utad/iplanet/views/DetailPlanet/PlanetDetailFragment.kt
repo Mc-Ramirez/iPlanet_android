@@ -27,7 +27,7 @@ class PlanetDetailFragment : Fragment() {
     private var _binding: FragmentPlanetDetailBinding? = null
     private val binding get() = _binding!!
     private val args: PlanetDetailFragmentArgs by navArgs()
-
+    private var planetImageURL = ""
 
     private val retrofit = Retrofit.Builder()
         .baseUrl("https://iplanet-api.herokuapp.com")
@@ -47,6 +47,7 @@ class PlanetDetailFragment : Fragment() {
                     binding.tvMass.text = response.body()?.planetMassKg ?: "No encontrado"
                     binding.tvRadius.text = response.body()?.planetEquatorialRadius ?: "No encontrado"
                     binding.tvRotation.text = response.body()?.planetRotationPeriod ?: "No encontrado"
+                    planetImageURL = response.body()?.planetUrlImage.toString()
                     response.body()?.planetUrlImage?.let { binding.ivPlanetImage.imageURL(it) }
                 }
             }
@@ -93,7 +94,7 @@ class PlanetDetailFragment : Fragment() {
         }
 
         binding.btnEditPlanet.setOnClickListener(){
-            val action = PlanetDetailFragmentDirections.actionPlanetDetailFragmentToEditPlanetFragment()
+            val action = PlanetDetailFragmentDirections.actionPlanetDetailFragmentToEditPlanetFragment(args.planetId,planetImageURL)
             findNavController().navigate(action)
         }
 
