@@ -90,7 +90,7 @@ class AddNewPlanetFragment : Fragment() {
                 "${binding.tfName.text}",
                 "${binding.tfDensity.text}",
                 "${binding.tfCategory.text}",
-                "")
+                "$defaultImg")
 
 
             addNewPlanetToDB(thePlanetItem)
