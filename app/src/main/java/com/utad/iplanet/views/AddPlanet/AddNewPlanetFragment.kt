@@ -49,8 +49,8 @@ class AddNewPlanetFragment : Fragment() {
     }
 
     private fun addNewPlanetToDB(thePlanetItem: PlanetBody){
-            service.addNewPlanet(thePlanetItem).enqueue(object :Callback<String>{
-            override fun onResponse(call: Call<String>, response: Response<String>) {
+            service.addNewPlanet(thePlanetItem).enqueue(object :Callback<PlanetItem>{
+            override fun onResponse(call: Call<PlanetItem>, response: Response<PlanetItem>) {
                 if (response.isSuccessful){
                     val addedPlanet = response.body()
                     Log.d("RESPONSE", addedPlanet.toString())
@@ -60,7 +60,7 @@ class AddNewPlanetFragment : Fragment() {
                 }
             }
 
-            override fun onFailure(call: Call<String>, t: Throwable) {
+            override fun onFailure(call: Call<PlanetItem>, t: Throwable) {
                 Log.d("RESPONSE", "$t")
             }
 

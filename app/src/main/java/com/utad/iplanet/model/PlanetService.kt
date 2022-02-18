@@ -9,17 +9,20 @@ interface PlanetService {
     fun getAllPlanets(): Call<List<PlanetItem>>
 
     @GET("/getplanetbycategory/{category}")
-     fun getItemsByCategory(@Path("category") category: String): Call<List<PlanetItem>>
+    fun getItemsByCategory(@Path("category") category: String): Call<List<PlanetItem>>
 
     @GET("/getplanetbyname/{planetName}")
-     fun getItemByName(@Path("planetName") planetName: String): Call<List<PlanetItem>>
+    fun getItemByName(@Path("planetName") planetName: String): Call<List<PlanetItem>>
 
     @GET("/getplanetbyid/{id}")
-     fun getItemById(@Path("id") id: String): Call<PlanetItem>
+    fun getItemById(@Path("id") id: String): Call<PlanetItem>
 
-     @POST("/addplanet")
-     fun addNewPlanet(@Body planetBody: PlanetBody): Call<String>
+    @POST("/addplanet")
+    fun addNewPlanet(@Body planetBody: PlanetBody): Call<PlanetItem>
 
-     @DELETE("/deletebyid/{id}")
-     fun deletePlanetById(@Path("id") id:String): Call<String>
+    @PUT("/editplanet/{id}")
+    fun editPlanet(@Path("id") id:String, @Body planetBody: PlanetBody): Call<PlanetItem>
+
+    @DELETE("/deletebyid/{id}")
+    fun deletePlanetById(@Path("id") id: String): Call<String>
 }

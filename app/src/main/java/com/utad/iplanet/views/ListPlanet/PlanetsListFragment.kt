@@ -34,14 +34,16 @@ import android.view.Menu
 import com.google.android.material.snackbar.BaseTransientBottomBar
 import com.google.android.material.snackbar.Snackbar
 import com.utad.iplanet.R
+import kotlinx.coroutines.withContext
 
 
-class PlanetsListFragment : Fragment()  {
+class PlanetsListFragment : Fragment() {
     private var _binding: FragmentPlanetsListBinding? = null
     private val binding get() = _binding!!
 
-    private val adapter =  PlanetAdapter {
-        val action = PlanetsListFragmentDirections.actionPlanetsListFragmentToPlanetDetailFragment(it.id)
+    private val adapter = PlanetAdapter {
+        val action =
+            PlanetsListFragmentDirections.actionPlanetsListFragmentToPlanetDetailFragment(it.id)
         findNavController().navigate(action)
     }
 
@@ -62,37 +64,19 @@ class PlanetsListFragment : Fragment()  {
     }
 
 
-
-    fun requestAllItems(){
-            service.getAllPlanets().enqueue(object : Callback<List<PlanetItem>>{
-                override fun onResponse( call: Call<List<PlanetItem>>, response: Response<List<PlanetItem>>)
-                {
-                    if (response.isSuccessful){
-                        adapter.submitList(response.body())
-                    } else {
-                        Toast.makeText(context, "Error en la respuesta", Toast.LENGTH_LONG)
-                    }
-                }
-                override fun onFailure(call: Call<List<PlanetItem>>, t: Throwable) {
-                    Toast.makeText(context, "Error en la conexion", Toast.LENGTH_LONG)
-                    Log.e("requestData", "error")
-                }
-            })
-        }
-
-
-    fun requestItemByCategory(category: String){
-        service.getItemsByCategory(category).enqueue(object : Callback<List<PlanetItem>>{
+    fun requestAllItems() {
+        service.getAllPlanets().enqueue(object : Callback<List<PlanetItem>> {
             override fun onResponse(
                 call: Call<List<PlanetItem>>,
                 response: Response<List<PlanetItem>>
             ) {
-                if (response.isSuccessful){
+                if (response.isSuccessful) {
                     adapter.submitList(response.body())
                 } else {
                     Toast.makeText(context, "Error en la respuesta", Toast.LENGTH_LONG)
                 }
             }
+
             override fun onFailure(call: Call<List<PlanetItem>>, t: Throwable) {
                 Toast.makeText(context, "Error en la conexion", Toast.LENGTH_LONG)
                 Log.e("requestData", "error")
@@ -100,13 +84,40 @@ class PlanetsListFragment : Fragment()  {
         })
     }
 
-    fun requestItemByName(planetName: String){
-        service.getItemByName(planetName).enqueue(object : Callback<List<PlanetItem>>{
+
+    fun requestItemByCategory(category: String) {
+
+        CoroutineScope(Dispatchers.IO).launch {
+            service.getItemsByCategory(category).enqueue(
+
+                    object : Callback<List<PlanetItem>> {
+                        override fun onResponse(
+                            call: Call<List<PlanetItem>>,
+                            response: Response<List<PlanetItem>>
+                        ) {
+                            if (response.isSuccessful) {
+                                adapter.submitList(response.body())
+                            } else {
+                                Toast.makeText(context, "Error en la respuesta", Toast.LENGTH_LONG)
+                            }
+                        }
+
+                        override fun onFailure(call: Call<List<PlanetItem>>, t: Throwable) {
+                            Toast.makeText(context, "Error en la conexion", Toast.LENGTH_LONG)
+                            Log.e("requestData", "error")
+                        }
+
+            })
+        }
+    }
+
+    fun requestItemByName(planetName: String) {
+        service.getItemByName(planetName).enqueue(object : Callback<List<PlanetItem>> {
             override fun onResponse(
                 call: Call<List<PlanetItem>>,
                 response: Response<List<PlanetItem>>
             ) {
-                if (response.isSuccessful){
+                if (response.isSuccessful) {
                     adapter.submitList(response.body())
                     Toast.makeText(context, "se hace la peticion", Toast.LENGTH_LONG).show()
 
@@ -114,6 +125,7 @@ class PlanetsListFragment : Fragment()  {
                     Toast.makeText(context, "Error en la respuesta", Toast.LENGTH_LONG)
                 }
             }
+
             override fun onFailure(call: Call<List<PlanetItem>>, t: Throwable) {
                 Toast.makeText(context, "Error en la conexion", Toast.LENGTH_LONG)
                 Log.e("requestData", "error")
@@ -125,23 +137,23 @@ class PlanetsListFragment : Fragment()  {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.floatingActionButton3.setOnClickListener(){
+        binding.floatingActionButton3.setOnClickListener() {
             requestAllItems()
             adapter.notifyDataSetChanged()
         }
 
 
         binding.cg.setOnCheckedChangeListener { group, checkedId ->
-            val chip:Chip? = group.findViewById(checkedId)
+            val chip: Chip? = group.findViewById(checkedId)
 
-            if (chip?.isChecked == true){
-                if (chip.text.equals("Planets")){
+            if (chip?.isChecked == true) {
+                if (chip.text.equals("Planets")) {
                     requestItemByCategory("Planet")
                     adapter.notifyDataSetChanged()
-                } else if (chip.text.equals("Stars")){
+                } else if (chip.text.equals("Stars")) {
                     requestItemByCategory("Star")
                     adapter.notifyDataSetChanged()
-                }else if (chip.text.equals("Moons")){
+                } else if (chip.text.equals("Moons")) {
                     requestItemByCategory("Moon")
                     adapter.notifyDataSetChanged()
                 }
@@ -151,8 +163,9 @@ class PlanetsListFragment : Fragment()  {
             }
         }
 
-        binding.floatingActionButton2.setOnClickListener(){
-            val action = PlanetsListFragmentDirections.actionPlanetsListFragmentToAddNewPlanetFragment()
+        binding.floatingActionButton2.setOnClickListener() {
+            val action =
+                PlanetsListFragmentDirections.actionPlanetsListFragmentToAddNewPlanetFragment()
             findNavController().navigate(action)
         }
 
@@ -161,7 +174,7 @@ class PlanetsListFragment : Fragment()  {
     }
 
 
-    private fun configRv(){
+    private fun configRv() {
         binding.recyclerView.layoutManager = GridLayoutManager(context, 2)
         binding.recyclerView.adapter = adapter
 
