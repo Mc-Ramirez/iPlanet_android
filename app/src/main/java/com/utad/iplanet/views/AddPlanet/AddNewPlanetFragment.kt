@@ -77,6 +77,11 @@ class AddNewPlanetFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        binding.btnGoBackToList.setOnClickListener(){
+            val action = AddNewPlanetFragmentDirections.actionAddNewPlanetFragmentToPlanetsListFragment()
+            findNavController().navigate(action)
+        }
+
         binding.btnNewPicture.setOnClickListener(){
             val action = AddNewPlanetFragmentDirections.actionAddNewPlanetFragmentToAddNewPhotoFragment()
             findNavController().navigate(action)
