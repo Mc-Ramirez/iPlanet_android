@@ -12,7 +12,7 @@ interface PlanetService {
     fun getItemsByCategory(@Path("category") category: String): Call<List<PlanetItem>>
 
     @GET("/getplanetbyname/{planetName}")
-    fun getItemByName(@Path("planetName") planetName: String): Call<List<PlanetItem>>
+    fun getItemByName(@Path("planetName") planetName: String): Call<PlanetItem>
 
     @GET("/getplanetbyid/{id}")
     fun getItemById(@Path("id") id: String): Call<PlanetItem>

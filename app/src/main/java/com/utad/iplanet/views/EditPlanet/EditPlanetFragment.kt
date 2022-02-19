@@ -92,18 +92,21 @@ class EditPlanetFragment : Fragment() {
         binding.imageView3.imageURL(args.planetImage)
         binding.btnSavePlanet.setOnClickListener(){
             val planetEdited = PlanetBody("${binding.tfname.text}",
-            "${binding.tfCategory.text}",
-            "${binding.tfDensity.text}",
-            "${binding.tfMass.text}",
             "${binding.tfDistanceToSun.text}",
             "${binding.tfEquatorial.text}",
             "${binding.tfRotationPeriod.text}",
+            "${binding.tfMass.text}",
+            "${binding.tfDensity.text}",
+            "${binding.tfCategory.text}",
             args.planetImage)
             editPlanetToDB(args.planetId, planetEdited)
 
             Snackbar.make(binding.root,"Planeta Editado", BaseTransientBottomBar.LENGTH_SHORT
             ).setBackgroundTint(Color.BLACK).show()
 
+            goBackToDetail()
+        }
+        binding.btnGoBackToList.setOnClickListener(){
             goBackToDetail()
         }
 

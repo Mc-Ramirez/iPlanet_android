@@ -2,6 +2,7 @@ package com.utad.iplanet.views.ListPlanet
 
 import android.annotation.SuppressLint
 import android.content.Context.INPUT_METHOD_SERVICE
+import android.media.Image
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -86,48 +87,47 @@ class PlanetsListFragment : Fragment() {
 
 
     fun requestItemByCategory(category: String) {
-
         CoroutineScope(Dispatchers.IO).launch {
             service.getItemsByCategory(category).enqueue(
-
-                    object : Callback<List<PlanetItem>> {
-                        override fun onResponse(
-                            call: Call<List<PlanetItem>>,
-                            response: Response<List<PlanetItem>>
-                        ) {
-                            if (response.isSuccessful) {
-                                adapter.submitList(response.body())
-                            } else {
-                                Toast.makeText(context, "Error en la respuesta", Toast.LENGTH_LONG)
-                            }
+                object : Callback<List<PlanetItem>> {
+                    override fun onResponse(
+                        call: Call<List<PlanetItem>>,
+                        response: Response<List<PlanetItem>>
+                    ) {
+                        if (response.isSuccessful) {
+                            adapter.submitList(response.body())
+                        } else {
+                            Toast.makeText(context, "Error en la respuesta", Toast.LENGTH_LONG)
                         }
+                    }
 
-                        override fun onFailure(call: Call<List<PlanetItem>>, t: Throwable) {
-                            Toast.makeText(context, "Error en la conexion", Toast.LENGTH_LONG)
-                            Log.e("requestData", "error")
-                        }
+                    override fun onFailure(call: Call<List<PlanetItem>>, t: Throwable) {
+                        Toast.makeText(context, "Error en la conexion", Toast.LENGTH_LONG)
+                        Log.e("requestData", "error")
+                    }
 
-            })
+                })
         }
     }
 
+    var ListForPlanets = mutableListOf<PlanetItem>()
+
     // TODO: method
     fun requestItemByName(planetName: String) {
-        service.getItemByName(planetName).enqueue(object : Callback<List<PlanetItem>> {
-            override fun onResponse(
-                call: Call<List<PlanetItem>>,
-                response: Response<List<PlanetItem>>
-            ) {
+        service.getItemByName(planetName).enqueue(object : Callback<PlanetItem> {
+
+            override fun onResponse(call: Call<PlanetItem>, response: Response<PlanetItem>) {
                 if (response.isSuccessful) {
-                    adapter.submitList(response.body())
-                    Toast.makeText(context, "se hace la peticion", Toast.LENGTH_LONG).show()
+                    ListForPlanets.clear()
+                    response.body()?.let { ListForPlanets.add(it) }
+                    adapter.submitList(ListForPlanets)
 
                 } else {
-                    Toast.makeText(context, "Error en la respuesta", Toast.LENGTH_LONG)
+                    Log.e("requestData", "error by name")
                 }
             }
 
-            override fun onFailure(call: Call<List<PlanetItem>>, t: Throwable) {
+            override fun onFailure(call: Call<PlanetItem>, t: Throwable) {
                 Toast.makeText(context, "Error en la conexion", Toast.LENGTH_LONG)
                 Log.e("requestData", "error")
             }
@@ -138,12 +138,21 @@ class PlanetsListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.floatingActionButton3.setOnClickListener() {
+        binding.btnRefresh.setOnClickListener() {
             requestAllItems()
             adapter.notifyDataSetChanged()
         }
 
+        binding.btnSearchByName.setOnClickListener() {
+            if (binding.tfNameToSearch.text.toString().isBlank()){
+                requestAllItems()
+                adapter.notifyDataSetChanged()
+            } else {
+                requestItemByName(binding.tfNameToSearch.text.toString())
+                adapter.notifyDataSetChanged()
+            }
 
+        }
         binding.cg.setOnCheckedChangeListener { group, checkedId ->
             val chip: Chip? = group.findViewById(checkedId)
 
@@ -188,6 +197,8 @@ class PlanetsListFragment : Fragment() {
 
 
 }
+
+
 
 
 
