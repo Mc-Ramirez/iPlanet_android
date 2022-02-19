@@ -111,6 +111,7 @@ class PlanetsListFragment : Fragment() {
         }
     }
 
+    // TODO: method
     fun requestItemByName(planetName: String) {
         service.getItemByName(planetName).enqueue(object : Callback<List<PlanetItem>> {
             override fun onResponse(

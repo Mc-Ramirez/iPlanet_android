@@ -100,7 +100,7 @@ class AddNewPlanetFragment : Fragment() {
                 "${binding.tfDistanceToSun.text}",
                 "${binding.tfEquatorial.text}",
                 "${binding.tfRotationPeriod.text}",
-                "${binding.tfName.text}",
+                "${binding.tfMass.text}",
                 "${binding.tfDensity.text}",
                 "${binding.tfCategory.text}",
                 urlToAdd
